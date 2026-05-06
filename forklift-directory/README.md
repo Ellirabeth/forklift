@@ -267,6 +267,12 @@ npm run dev
 
 ---
 
+![img.png](screen-main.png)
+
+![img_1.png](screen-new-incident.png)
+
+---
+
 <p align="center">
   <sub>Сделано с ❤️ для учёта погрузчиков</sub>
   <br>

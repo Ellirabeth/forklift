@@ -77,3 +77,8 @@ docker run -p 8080:8080 -e PORT=8080 -e DATABASE_URL="jdbc:postgresql://host.doc
 
 # 3. Открыть в браузере
 http://localhost:8080
+
+---
+![img.png](../img.png)
+
+![img_1.png](../img_1.png)
