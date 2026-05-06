@@ -1,0 +1,61 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.classpath
+.project
+.settings/
+.vscode/
+
+# Node / Vue
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+*.tar
+*.pid
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+log/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Backend специфичное (если есть)
+backend/target/
+backend/.mvn/
+
+# Railway / Heroku
+.railway/
+railway.json
