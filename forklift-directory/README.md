@@ -61,6 +61,8 @@ forklift-directory/
 ├── .gitignore
 ├── LICENSE                          # Лицензия MIT
 ├── README.md                        # ← вы здесь
+├── start.sh                         # Стартовый скрипт (Linux/macOS)
+├── start.bat                        # Стартовый скрипт (Windows)
 ├── screen-main.png                  # Скриншот главного окна
 ├── screen-new-incident.png          # Скриншот окна инцидента
 │
@@ -270,7 +272,24 @@ forklift-directory/
 
 ## 🚀 Как запустить
 
-### 1. База данных (через Docker)
+### Быстрый старт (через скрипты)
+
+```bash
+# Linux/macOS
+chmod +x start.sh
+./start.sh              # полный запуск: БД + бэкенд + фронтенд
+./start.sh --stop       # остановить всё
+./start.sh --test       # запустить тесты
+
+# Windows
+start.bat               # полный запуск: БД + бэкенд + фронтенд
+start.bat --stop        # остановить всё
+start.bat --test        # запустить тесты
+```
+
+### Пошаговый запуск
+
+#### 1. База данных (через Docker)
 
 ```bash
 cd database/docker
