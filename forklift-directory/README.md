@@ -61,32 +61,43 @@ forklift-directory/
 ├── .gitignore
 ├── LICENSE                          # Лицензия MIT
 ├── README.md                        # ← вы здесь
+├── screen-main.png                  # Скриншот главного окна
+├── screen-new-incident.png          # Скриншот окна инцидента
 │
 ├── backend/                         # Java/Spring Boot бэкенд
 │   ├── pom.xml
 │   ├── create-project.ps1
 │   ├── README_for_me.md
-│   └── src/main/java/com/forklift/
-│       ├── ForkliftApplication.java           # Точка входа Spring Boot
-│       ├── controller/
-│       │   ├── ForkliftController.java        # REST API для погрузчиков
-│       │   └── DowntimeController.java        # REST API для простоев
-│       ├── model/
-│       │   ├── Forklift.java                  # Entity погрузчика
-│       │   ├── Downtime.java                  # Entity простоя
-│       │   └── dto/
-│       │       ├── ForkliftDTO.java           # DTO для погрузчика
-│       │       └── DowntimeDTO.java           # DTO для простоя
-│       ├── repository/
-│       │   ├── ForkliftRepository.java        # JPA репозиторий погрузчиков
-│       │   └── DowntimeRepository.java        # JPA репозиторий простоев
-│       ├── service/
-│       │   ├── ForkliftService.java           # Интерфейс сервиса погрузчиков
-│       │   ├── ForkliftServiceImpl.java       # Реализация сервиса погрузчиков
-│       │   ├── DowntimeService.java           # Интерфейс сервиса простоев
-│       │   └── DowntimeServiceImpl.java       # Реализация сервиса простоев
-│       └── exception/
-│           └── GlobalExceptionHandler.java    # Глобальный обработчик ошибок
+│   └── src/
+│       ├── main/
+│       │   ├── java/com/forklift/
+│       │   │   ├── ForkliftApplication.java           # Точка входа Spring Boot
+│       │   │   ├── controller/
+│       │   │   │   ├── ForkliftController.java        # REST API для погрузчиков
+│       │   │   │   └── DowntimeController.java        # REST API для простоев
+│       │   │   ├── model/
+│       │   │   │   ├── Forklift.java                  # Entity погрузчика
+│       │   │   │   ├── Downtime.java                  # Entity простоя
+│       │   │   │   └── dto/
+│       │   │   │       ├── ForkliftDTO.java           # DTO для погрузчика
+│       │   │   │       └── DowntimeDTO.java           # DTO для простоя
+│       │   │   ├── repository/
+│       │   │   │   ├── ForkliftRepository.java        # JPA репозиторий погрузчиков
+│       │   │   │   └── DowntimeRepository.java        # JPA репозиторий простоев
+│       │   │   ├── service/
+│       │   │   │   ├── ForkliftService.java           # Интерфейс сервиса погрузчиков
+│       │   │   │   ├── ForkliftServiceImpl.java       # Реализация сервиса погрузчиков
+│       │   │   │   ├── DowntimeService.java           # Интерфейс сервиса простоев
+│       │   │   │   └── DowntimeServiceImpl.java       # Реализация сервиса простоев
+│       │   │   └── exception/
+│       │   │       └── GlobalExceptionHandler.java    # Глобальный обработчик ошибок
+│       │   └── resources/
+│       │       ├── application.properties                       # Конфигурация Spring Boot (БД, порт)
+│       │       └── db/migration/V1__create_forklift_tables.sql  # Миграция Flyway (создание таблиц)
+│       └── test/
+│           └── java/com/forklift/service/
+│               ├── ForkliftServiceImplTest.java       # Unit-тесты (16 тестов)
+│               └── DowntimeServiceImplTest.java       # Unit-тесты (11 тестов)
 │
 ├── frontend/                        # Vue 3 фронтенд
 │   ├── package.json
