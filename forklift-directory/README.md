@@ -230,6 +230,33 @@ forklift-directory/
 
 ---
 
+## 🧪 Тестирование
+
+Всего **27 unit-тестов**, покрывающих основную бизнес-логику сервисов.
+
+### ForkliftServiceImplTest (16 тестов)
+
+| Метод | Тесты | Проверяется |
+|-------|-------|-------------|
+| `getAllForklifts` | 3 | Возврат всех записей, пустой список, поле `hasDowntimes` (true/false) |
+| `searchByNumber` | 2 | Поиск по вхождению, пустой результат при отсутствии совпадений |
+| `getForkliftById` | 2 | Успешное получение, EntityNotFoundException при отсутствии |
+| `createForklift` | 3 | Сохранение записи, установка `isActive=true`, использование переданного `modifiedBy` |
+| `updateForklift` | 2 | Обновление полей, EntityNotFoundException при отсутствии |
+| `deleteForklift` | 3 | Успешное удаление, запрет при наличии простоев (409), EntityNotFoundException |
+
+### DowntimeServiceImplTest (11 тестов)
+
+| Метод | Тесты | Проверяется |
+|-------|-------|-------------|
+| `getDowntimesByForklift` | 3 | Возврат списка, пустой список, сортировка DESC по `startTime` |
+| `createDowntime` | 2 | Сохранение простоя, EntityNotFoundException при отсутствии погрузчика |
+| `updateDowntime` | 2 | Обновление причины, EntityNotFoundException при отсутствии |
+| `deleteDowntime` | 2 | Успешное удаление, EntityNotFoundException при отсутствии |
+| `convertToDTO` duration | 2 | Расчёт длительности с `endTime` и без (`endTime` = текущее время) |
+
+---
+
 ## 🚀 Как запустить
 
 ### 1. База данных (через Docker)
@@ -258,6 +285,13 @@ npm run dev
 ```
 
 Приложение будет доступно: **http://localhost:5173**
+
+### 4. Запуск тестов
+
+```bash
+cd backend
+mvn test
+```
 
 ---
 

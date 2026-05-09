@@ -39,29 +39,26 @@ public class ForkliftServiceImpl implements ForkliftService {
     
     @Override
     public ForkliftDTO getForkliftById(Long id) {
-        Forklift forklift = forkliftRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Forklift not found with id: " + id));
-        return convertToDTO(forklift);
+        return convertToDTO(findByIdOrThrow(id));
     }
     
     @Override
     public ForkliftDTO createForklift(ForkliftDTO forkliftDTO) {
         Forklift forklift = convertToEntity(forkliftDTO);
         forklift.setLastModified(LocalDateTime.now());
-        forklift.setModifiedBy(forkliftDTO.getModifiedBy() != null ? forkliftDTO.getModifiedBy() : getCurrentUser());
+        forklift.setModifiedBy(resolveModifiedBy(forkliftDTO.getModifiedBy()));
         forklift.setIsActive(true);
         return convertToDTO(forkliftRepository.save(forklift));
     }
     
     @Override
     public ForkliftDTO updateForklift(Long id, ForkliftDTO forkliftDTO) {
-        Forklift existingForklift = forkliftRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Forklift not found with id: " + id));
+        Forklift existingForklift = findByIdOrThrow(id);
         
         existingForklift.setBrand(forkliftDTO.getBrand());
         existingForklift.setNumber(forkliftDTO.getNumber());
         existingForklift.setLoadCapacity(forkliftDTO.getLoadCapacity());
-        existingForklift.setModifiedBy(forkliftDTO.getModifiedBy() != null ? forkliftDTO.getModifiedBy() : getCurrentUser());
+        existingForklift.setModifiedBy(resolveModifiedBy(forkliftDTO.getModifiedBy()));
         existingForklift.setLastModified(LocalDateTime.now());
         
         return convertToDTO(forkliftRepository.save(existingForklift));
@@ -69,8 +66,7 @@ public class ForkliftServiceImpl implements ForkliftService {
     
     @Override
     public void deleteForklift(Long id) {
-        Forklift forklift = forkliftRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Forklift not found with id: " + id));
+        Forklift forklift = findByIdOrThrow(id);
         
         if (downtimeRepository.existsByForklift(forklift)) {
             throw new IllegalStateException("Cannot delete forklift - has registered downtimes");
@@ -94,6 +90,15 @@ public class ForkliftServiceImpl implements ForkliftService {
     }
 
     // В методе convertToEntity
+    private Forklift findByIdOrThrow(Long id) {
+        return forkliftRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Forklift not found with id: " + id));
+    }
+
+    private String resolveModifiedBy(String modifiedBy) {
+        return modifiedBy != null ? modifiedBy : "по умолчанию";
+    }
+
     private Forklift convertToEntity(ForkliftDTO dto) {
         Forklift forklift = new Forklift();
         forklift.setBrand(dto.getBrand());
@@ -101,9 +106,5 @@ public class ForkliftServiceImpl implements ForkliftService {
         forklift.setLoadCapacity(dto.getLoadCapacity());
         forklift.setIsActive(dto.getIsActive() != null ? dto.getIsActive() : true);
         return forklift;
-    }
-    
-    private String getCurrentUser() {
-        return "по умолчанию";
     }
 }
