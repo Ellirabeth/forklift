@@ -74,6 +74,8 @@ forklift-directory/
 │       ├── main/
 │       │   ├── java/com/forklift/
 │       │   │   ├── ForkliftApplication.java           # Точка входа Spring Boot
+│       │   │   ├── config/
+│       │   │   │   └── WebConfig.java                 # Глобальная конфигурация CORS
 │       │   │   ├── controller/
 │       │   │   │   ├── ForkliftController.java        # REST API для погрузчиков
 │       │   │   │   └── DowntimeController.java        # REST API для простоев
@@ -322,6 +324,13 @@ npm run dev
 cd backend
 mvn test
 ```
+
+---
+
+### Онлайн версия (railway.com)
+
+site-https://forklift-production.up.railway.app/
+dashboard-https://railway.com/project/f3c4b225-3b0f-435e-8de3-805be869cc8e?
 
 ---
 
